@@ -33,7 +33,7 @@ class _methodsState extends State<methods> {
                   Colors.blue[700],
                   Colors.blue[600],
                   Colors.blue[500],
-                  Colors.blue[400],
+                  Colors.blue[500],
                 ],
               ),
               shape: BoxShape.rectangle,
