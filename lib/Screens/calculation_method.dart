@@ -46,7 +46,7 @@ class _methodsState extends State<methods> {
                 Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
-                    "Select the method of your choice",
+                    "Select method of your choice",
                     style: TextStyle(
                         fontSize: 19,
                         fontWeight: FontWeight.w400,
