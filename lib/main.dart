@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:salary_calculator/Animation/PageRouteBuilder.dart';
 import 'package:salary_calculator/Screens/calculation_method.dart';
-import 'package:salary_calculator/Screens/homepage.dart';
+import 'package:salary_calculator/Screens/Daily_Wage_Method.dart';
 import 'package:path/path.dart';
 
 void main() {
@@ -25,8 +26,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     Future.delayed(Duration(seconds: 4), () {
       Navigator.pushReplacement(
-          this.context, MaterialPageRoute(builder: (context) => methods()));
-    });
+          this.context, BouncyPageRoute(methods()),
+      );}
+    );
     super.initState();
   }
 
@@ -38,10 +40,10 @@ class _MyAppState extends State<MyApp> {
     end: Alignment.bottomLeft,
     stops: [0.2, 0.4, 0.6, 0.8],
     colors: [
-    Colors.blue[700],
-    Colors.blue[600],
-    Colors.blue[500],
-    Colors.blue[400],
+      Colors.cyan[700],
+      Colors.cyan[500],
+      Colors.cyan[600],
+      Colors.cyan[800],
        ],
        ),
         ),
@@ -63,10 +65,9 @@ class _MyAppState extends State<MyApp> {
               Text(
                 "Salary Calculator",
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     fontSize: 28,
-                    color: Colors.black,
-                    fontStyle: FontStyle.italic),
+                    color: Colors.black,),
               )
             ],
           ),
