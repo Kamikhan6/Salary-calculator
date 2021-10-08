@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter/painting.dart';
 import 'package:salary_calculator/Animation/PageRouteBuilder.dart';
-import 'package:salary_calculator/Screens/Daily_Wage_Method.dart';
-import 'package:salary_calculator/Screens/Total_Days_Method.dart';
-import 'package:salary_calculator/Screens/Working_Days_Method.dart';
+import 'package:salary_calculator/Screens/DailyWageMethod/Daily_Wage_Method.dart';
+import 'package:salary_calculator/Screens/TotalDaysMethod/Total_Days_Method.dart';
+import 'package:salary_calculator/Screens/WorkingDaysMethod/Working_Days_Method.dart';
 import 'package:salary_calculator/models/cardModel.dart';
 
-import 'Daily_Wage_Method.dart';
+import 'DailyWageMethod/Daily_Wage_Method.dart';
 
 class methods extends StatefulWidget {
   @override

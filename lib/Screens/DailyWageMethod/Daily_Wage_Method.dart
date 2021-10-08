@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:salary_calculator/Animation/PageRouteBuilder.dart';
-import 'package:salary_calculator/Screens/DailyWageMethod_Result.dart';
+import 'package:salary_calculator/Screens/DailyWageMethod/DailyWageMethod_Result.dart';
 
 class DailyWage extends StatefulWidget {
   @override
@@ -10,9 +10,9 @@ class DailyWage extends StatefulWidget {
 }
 
 class _DailyWageState extends State<DailyWage> {
-  final NDWController=TextEditingController();
-  final PDController =  TextEditingController();
-  final ResController=  TextEditingController();
+  final NDWController = TextEditingController();
+  final PDController = TextEditingController();
+  final ResController = TextEditingController();
 
   @override
   void dispose() {
@@ -76,7 +76,7 @@ class _DailyWageState extends State<DailyWage> {
                     child: TextField(
                       keyboardType: TextInputType.number,
                       controller: NDWController,
-                      onChanged: (value){
+                      onChanged: (value) {
                         _calculate();
                       },
                       decoration: InputDecoration(
@@ -107,7 +107,7 @@ class _DailyWageState extends State<DailyWage> {
                     child: TextField(
                       keyboardType: TextInputType.number,
                       controller: PDController,
-                      onChanged: (value){
+                      onChanged: (value) {
                         _calculate();
                       },
                       decoration: InputDecoration(
@@ -150,19 +150,84 @@ class _DailyWageState extends State<DailyWage> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            BouncyPageRoute(DailyWageResult(
-                              value1: NDWController.text,
-                              value2: PDController.text,
-                              result: ResController.text,
-                            )
-                            ),
+                          if (NDWController.text.trim().isEmpty &&
+                            PDController.text.trim().isEmpty) {
+                          Widget okButton = TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"));
+                          AlertDialog alertDialog = AlertDialog(
+                            content: Text("Please Enter Net wage and present days"),
+                            actions: [
+                              okButton,
+                            ],
                           );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return alertDialog;
+                            },
+                          );
+                        }
+
+                           else if (NDWController.text.trim().isEmpty &&
+                              PDController.text.trim().isNotEmpty) {
+                            Widget okButton = TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("OK"));
+                               AlertDialog alertDialog = AlertDialog(
+                              content: Text("Please Enter Net wage"),
+                              actions: [
+                                okButton,
+                              ],
+                            );
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alertDialog;
+                              },
+                            );
+                          }
+
+                          else if (NDWController.text.trim().isNotEmpty &&
+                              PDController.text.trim().isEmpty) {
+                            Widget okButton = TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("OK"));
+                            AlertDialog alertDialog = AlertDialog(
+                              content: Text("Please Enter present days"),
+                              actions: [
+                                okButton,
+                              ],
+                            );
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alertDialog;
+                              },
+                            );
+                          }
+
+                          else {
+                            Navigator.push(
+                              context,
+                              BouncyPageRoute(DailyWageResult(
+                                value1: NDWController.text,
+                                value2: PDController.text,
+                                result: ResController.text,
+                              )),
+                            );
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.orangeAccent,
-                        )),
+                        )
+    ),
                   ),
                 ),
               ],
@@ -185,28 +250,10 @@ class _DailyWageState extends State<DailyWage> {
       margin: EdgeInsets.only(top: 20.0, left: 10.0),
     );
   }
+
   void _calculate() {
-      if (NDWController.text.trim().isNotEmpty &&
-          PDController.text.trim().isNotEmpty) {
-        final firstValue = double.parse(NDWController.text);
-        final secondValue = double.parse(PDController.text);
-        ResController.text = (firstValue * secondValue).toString();
-      }
-      else if(NDWController.text.trim().isEmpty &&
-             PDController.text.trim().isNotEmpty){
-         Widget okButton=TextButton(onPressed: (){
-           Navigator.of(context).pop();
-         }, child: Text ("OK"));
-           AlertDialog alertDialog= AlertDialog(
-             content: Text("Please Enter Net wage"),
-             actions: [okButton,],
-           );
-           showDialog(
-               context: context,
-               builder: (BuildContext context){
-                 return alertDialog;
-         },
-           );
-      }
+      final firstValue = int.parse(NDWController.text);
+      final secondValue = int.parse(PDController.text);
+      ResController.text = (firstValue * secondValue).toString();
   }
 }

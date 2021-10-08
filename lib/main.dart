@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:salary_calculator/Animation/PageRouteBuilder.dart';
 import 'package:salary_calculator/Screens/calculation_method.dart';
-import 'package:salary_calculator/Screens/Daily_Wage_Method.dart';
+import 'package:salary_calculator/Screens/DailyWageMethod/Daily_Wage_Method.dart';
 import 'package:path/path.dart';
 
 void main() {
@@ -65,9 +65,9 @@ class _MyAppState extends State<MyApp> {
               Text(
                 "Salary Calculator",
                 style: TextStyle(
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.bold,
                     fontSize: 28,
-                    color: Colors.black,),
+                    color: Colors.white,),
               )
             ],
           ),
