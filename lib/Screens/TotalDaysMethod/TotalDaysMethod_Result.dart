@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 class TotalDaysResult extends StatefulWidget {
   final String value1;
   final String value2;
@@ -18,6 +19,14 @@ class TotalDaysResult extends StatefulWidget {
 class _TotalDaysResultState extends State<TotalDaysResult> {
   @override
   Widget build(BuildContext context) {
+    final List<ChartData> chartData = [
+      ChartData('Net salary', 25, 'Net Salary\n${widget.value1}',),
+      ChartData('Present Days', 25, 'Present Days\n${widget.value2}'),
+      ChartData('Paid Leave', 25, 'Paid Leave\n${widget.value3}'),
+      ChartData('Weekly Off', 25, 'Weekly Off\n${widget.value4}'),
+      ChartData('Festivel', 25, 'Festivel\n${widget.value5}')
+
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Text("Salary Calculator"),
@@ -50,6 +59,24 @@ class _TotalDaysResultState extends State<TotalDaysResult> {
                 getImageAsset(),
               ],
             ),
+          ),
+          Container(
+              child: SfCircularChart(
+                  palette: <Color>[Colors.amber, Colors.grey, Colors.blueAccent, Colors.green,Colors.pinkAccent],
+                  series: <CircularSeries>[
+                    PieSeries<ChartData, String>(
+                        dataSource: chartData,
+                        xValueMapper: (ChartData data, _) => data.x,
+                        yValueMapper: (ChartData data, _) => data.y,
+                        // Map the data label text for each point from the data source
+                        dataLabelMapper: (ChartData data, _) => data.text,
+                        pointColorMapper: (ChartData data,_) => data.color,
+                        dataLabelSettings: DataLabelSettings(
+                            isVisible: true
+                        )
+                    )
+                  ]
+              )
           ),
           Padding(
             padding: const EdgeInsets.only(top: 30.0),
@@ -89,6 +116,13 @@ class _TotalDaysResultState extends State<TotalDaysResult> {
       margin: EdgeInsets.only(top: 20.0, left: 10.0),
     );
   }
+}
+class ChartData {
+  ChartData(this.x, this.y,this.text, [this.color]);
+  final String x;
+  final double y;
+  final String text;
+  final Color color;
 }
 
 

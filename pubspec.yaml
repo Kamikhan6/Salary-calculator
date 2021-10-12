@@ -31,7 +31,8 @@ dependencies:
   lottie: ^0.7.0+1
   flutter_tabler_icons: ^1.0.2
   flutter_icons: ^1.1.0
-
+  pie_chart: ^5.0.1
+  syncfusion_flutter_charts: ^19.3.44+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

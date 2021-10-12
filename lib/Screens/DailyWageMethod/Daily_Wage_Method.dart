@@ -77,7 +77,8 @@ class _DailyWageState extends State<DailyWage> {
                       keyboardType: TextInputType.number,
                       controller: NDWController,
                       onChanged: (value) {
-                        _calculate();
+                        //_calculate();
+                        value=value;
                       },
                       decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -108,7 +109,8 @@ class _DailyWageState extends State<DailyWage> {
                       keyboardType: TextInputType.number,
                       controller: PDController,
                       onChanged: (value) {
-                        _calculate();
+                        //_calculate();
+                        value=value;
                       },
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(14.0),
@@ -214,6 +216,7 @@ class _DailyWageState extends State<DailyWage> {
                           }
 
                           else {
+                            _calculate();
                             Navigator.push(
                               context,
                               BouncyPageRoute(DailyWageResult(
@@ -222,6 +225,8 @@ class _DailyWageState extends State<DailyWage> {
                                 result: ResController.text,
                               )),
                             );
+                             NDWController.clear();
+                             PDController.clear();
                           }
                         },
                         style: ElevatedButton.styleFrom(

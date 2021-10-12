@@ -19,6 +19,7 @@ class _methodsState extends State<methods> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text("Salary Calculator"),
           elevation: 0.0,
@@ -54,8 +55,7 @@ class _methodsState extends State<methods> {
           ),
         ),
       Padding(
-        padding: const EdgeInsets.only(top: 30.0),
-                  child: Expanded(
+        padding: const EdgeInsets.only(top: 20.0),
                     child: Column(
                       children: <Widget>[
                         Padding(
@@ -153,7 +153,6 @@ class _methodsState extends State<methods> {
                       ],
                     ),
                   ),
-                ),
 
         ]
         ),

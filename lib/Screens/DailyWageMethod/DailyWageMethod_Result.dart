@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DailyWageResult extends StatefulWidget {
   final String value1;
@@ -13,7 +14,14 @@ class DailyWageResult extends StatefulWidget {
 class _DailyWageResultState extends State<DailyWageResult> {
   @override
   Widget build(BuildContext context) {
+    final List<ChartData> chartData = [
+      ChartData('Net Daily wage', 25, 'Net Daily wage\n${widget.value1}',),
+      ChartData('Present Days', 25, 'Present Days\n${widget.value2}'),
+
+
+    ];
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Salary Calculator"),
       ),
@@ -46,6 +54,24 @@ class _DailyWageResultState extends State<DailyWageResult> {
               ],
             ),
           ),
+          Container(
+              child: SfCircularChart(
+                  palette: <Color>[Colors.amber, Colors.grey, Colors.blueAccent, Colors.green],
+                  series: <CircularSeries>[
+                    PieSeries<ChartData, String>(
+                        dataSource: chartData,
+                        xValueMapper: (ChartData data, _) => data.x,
+                        yValueMapper: (ChartData data, _) => data.y,
+                        // Map the data label text for each point from the data source
+                        dataLabelMapper: (ChartData data, _) => data.text,
+                        pointColorMapper: (ChartData data,_) => data.color,
+                        dataLabelSettings: DataLabelSettings(
+                            isVisible: true
+                        )
+                    )
+                  ]
+              )
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 30.0),
             child: Column(
@@ -76,4 +102,11 @@ class _DailyWageResultState extends State<DailyWageResult> {
       margin: EdgeInsets.only(top: 20.0, left: 10.0),
     );
   }
+}
+class ChartData {
+  ChartData(this.x, this.y,this.text, [this.color]);
+  final String x;
+  final double y;
+  final String text;
+  final Color color;
 }

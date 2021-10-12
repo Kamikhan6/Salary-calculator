@@ -96,6 +96,10 @@ class _WorkingDaysState extends State<WorkingDays> {
                     padding: EdgeInsets.only(left: 14, right: 14, top: 8),
                     child: TextField(
                       controller: NSController,
+                      onChanged: (value) {
+                        //_calculate();
+                        value=value;
+                      },
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -125,7 +129,8 @@ class _WorkingDaysState extends State<WorkingDays> {
                   child: TextField(
                     controller: PDController,
                     onChanged: (value) {
-                      _calculate();
+                      //_calculate();
+                      value=value;
                     },
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -156,7 +161,8 @@ class _WorkingDaysState extends State<WorkingDays> {
                   child: TextField(
                     controller: PLController,
                     onChanged: (value) {
-                      _calculate();
+                      // _calculate();
+                      value=value;
                     },
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -187,7 +193,8 @@ class _WorkingDaysState extends State<WorkingDays> {
                   child: TextField(
                     controller: WDController,
                     onSubmitted: (value) {
-                      _calculate();
+                      //_calculate();
+                      value=value;
                     },
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -228,7 +235,6 @@ class _WorkingDaysState extends State<WorkingDays> {
                           ),
                         ),
                         onPressed: () {
-                          _calculate();
                           if (NSController.text
                               .trim()
                               .isEmpty &&
@@ -349,6 +355,7 @@ class _WorkingDaysState extends State<WorkingDays> {
                             }
                           }
                           else {
+                            _calculate();
                            isValid == false ? showSnackBar() : Navigator.push(
                                 context,
                                 BouncyPageRoute(WorkingDaysResult(
@@ -361,7 +368,7 @@ class _WorkingDaysState extends State<WorkingDays> {
                                 )
                             );
                           }
-                            PDController.clear();
+                          PDController.clear();
                           NSController.clear();
                           PLController.clear();
                           WDController.clear();
@@ -398,10 +405,10 @@ class _WorkingDaysState extends State<WorkingDays> {
   }
 
  bool _calculate() {
-    final netSalary = double.parse(NSController.text);
-    final presentDays = double.parse(PDController.text);
-    final paidLeave = double.parse(PLController.text);
-    final workingDays = double.parse(WDController.text);
+    final netSalary = int.parse(NSController.text);
+    final presentDays = int.parse(PDController.text);
+    final paidLeave = int.parse(PLController.text);
+    final workingDays = int.parse(WDController.text);
     if((presentDays + paidLeave) <= 30) {
       ResController.text = (netSalary * (presentDays + paidLeave) ~/ workingDays).toString();
       isValid = true;

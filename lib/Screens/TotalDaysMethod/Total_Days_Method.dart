@@ -15,6 +15,7 @@ class _TotalDaysState extends State<TotalDays> {
   final FController = TextEditingController();
   final TDController = TextEditingController();
   final ResController = TextEditingController();
+  bool isvalid=false;
 
   @override
   void dispose() {
@@ -83,7 +84,8 @@ class _TotalDaysState extends State<TotalDays> {
                       keyboardType: TextInputType.number,
                       controller: NSController,
                       onChanged: (value) {
-                        _calculate();
+                        //_calculate();
+                        value=value;
                       },
                       decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -113,7 +115,8 @@ class _TotalDaysState extends State<TotalDays> {
                     keyboardType: TextInputType.number,
                     controller: PDController,
                     onChanged: (value) {
-                      _calculate();
+                      //_calculate();
+                      value=value;
                     },
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(14.0),
@@ -144,7 +147,8 @@ class _TotalDaysState extends State<TotalDays> {
                     keyboardType: TextInputType.number,
                     controller: PLController,
                     onChanged: (value) {
-                      _calculate();
+                     // _calculate();
+                      value=value;
                     },
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(14.0),
@@ -175,7 +179,8 @@ class _TotalDaysState extends State<TotalDays> {
                     keyboardType: TextInputType.number,
                     controller: WOController,
                     onChanged: (value) {
-                      _calculate();
+                      //_calculate();
+                      value=value;
                     },
                     decoration: InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -204,7 +209,8 @@ class _TotalDaysState extends State<TotalDays> {
                     keyboardType: TextInputType.number,
                     controller: FController,
                     onChanged: (value) {
-                      _calculate();
+                      //_calculate();
+                      value=value;
                     },
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(14.0),
@@ -235,7 +241,8 @@ class _TotalDaysState extends State<TotalDays> {
                     keyboardType: TextInputType.number,
                     controller: TDController,
                     onChanged: (value) {
-                      _calculate();
+                     // _calculate();
+                        value=value;
                     },
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(14.0),
@@ -274,8 +281,180 @@ class _TotalDaysState extends State<TotalDays> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        onPressed: () {
-                          Navigator.push(
+                        onPressed: () { if (NSController.text
+                            .trim()
+                            .isEmpty &&
+                            PDController.text
+                                .trim()
+                                .isEmpty &&
+                            PLController.text
+                                .trim()
+                                .isEmpty &&
+                            WOController.text
+                                .trim()
+                                .isEmpty &&
+                            FController.text
+                                .trim()
+                                .isEmpty&&
+                            TDController.text
+                                .trim()
+                                .isEmpty) {
+                          Widget okButton = TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"));
+                          AlertDialog alertDialog = AlertDialog(
+                            content: Text(
+                                "Please Enter Data"),
+                            actions: [
+                              okButton,
+                            ],
+                          );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return alertDialog;
+                            },
+                          );
+                        } else if (NSController.text
+                            .trim()
+                            .isEmpty) {
+                          Widget okButton = TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"));
+                          AlertDialog alertDialog = AlertDialog(
+                            content: Text("Please Enter Remining Data"),
+                            actions: [
+                              okButton,
+                            ],
+                          );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return alertDialog;
+                            },
+                          );
+                        }
+                        else if (
+                        PDController.text
+                            .trim()
+                            .isEmpty) {
+                          Widget okButton = TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"));
+                          AlertDialog alertDialog = AlertDialog(
+                            content: Text("Please Enter Remining Data"),
+                            actions: [
+                              okButton,
+                            ],
+                          );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return alertDialog;
+                            },
+                          );
+                        }
+                        else if (
+                        PLController.text
+                            .trim()
+                            .isEmpty
+                        ) {
+                          Widget okButton = TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"));
+                          AlertDialog alertDialog = AlertDialog(
+                            content: Text("Please Enter Remining Data"),
+                            actions: [
+                              okButton,
+                            ],
+                          );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return alertDialog;
+                            },
+                          );
+                        }
+                        else if (FController.text
+                            .trim()
+                            .isEmpty) {
+                          {
+                            Widget okButton = TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("OK"));
+                            AlertDialog alertDialog = AlertDialog(
+                              content: Text("Please Enter Remining Data"),
+                              actions: [
+                                okButton,
+                              ],
+                            );
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alertDialog;
+                              },
+                            );
+                          }
+                        }
+                        else if (WOController.text
+                            .trim()
+                            .isEmpty) {
+                          {
+                            Widget okButton = TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("OK"));
+                            AlertDialog alertDialog = AlertDialog(
+                              content: Text("Please Enter Remining Data"),
+                              actions: [
+                                okButton,
+                              ],
+                            );
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alertDialog;
+                              },
+                            );
+                          }
+                        }
+                        else if (TDController.text
+                            .trim()
+                            .isEmpty) {
+                          {
+                            Widget okButton = TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("OK"));
+                            AlertDialog alertDialog = AlertDialog(
+                              content: Text("Please Enter Remining Data"),
+                              actions: [
+                                okButton,
+                              ],
+                            );
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alertDialog;
+                              },
+                            );
+                          }
+                        }
+                        else {
+                          _calculate();
+                          isvalid == false ? showSnackBar() : Navigator.push(
                               context,
                               BouncyPageRoute(TotalDaysResult(
                                 value1: NSController.text,
@@ -287,7 +466,13 @@ class _TotalDaysState extends State<TotalDays> {
                                 result: ResController.text,
                               )));
 
-
+                          PDController.clear();
+                          NSController.clear();
+                          PLController.clear();
+                          WOController.clear();
+                          FController.clear();
+                          TDController.clear();
+                        }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.orangeAccent,
@@ -300,6 +485,10 @@ class _TotalDaysState extends State<TotalDays> {
         ],
       ),
     );
+  }
+  void showSnackBar() {
+    final snackBar = SnackBar(content: Text('Invalid number of days'));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   Widget getImageAsset() {
@@ -326,8 +515,11 @@ class _TotalDaysState extends State<TotalDays> {
     if((presentDays + paidLeave + weeklyOff + festivel) <= 30) {
     ResController.text =
         (netSalary * ((presentDays + paidLeave+weeklyOff + festivel) / totalDays)).toString();
+        isvalid = true;
+        return isvalid;
   } else {
       print('invalid data');
+      return isvalid;
     }
 
   }

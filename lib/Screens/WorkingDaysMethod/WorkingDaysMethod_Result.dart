@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pie_chart/pie_chart.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class WorkingDaysResult extends StatefulWidget {
 
@@ -15,9 +17,19 @@ class WorkingDaysResult extends StatefulWidget {
 }
 
 class _WorkingDaysResultState extends State<WorkingDaysResult> {
+
+
   @override
   Widget build(BuildContext context) {
+    final List<ChartData> chartData = [
+      ChartData('Net salary', 25, 'Net Salary\n${widget.value1}',),
+      ChartData('Present Days', 25, 'Present Days\n${widget.value2}'),
+      ChartData('Paid Leave', 25, 'Paid Leave\n${widget.value3}'),
+      ChartData('Working Days', 25, 'Working Days\n${widget.value4}'),
+
+    ];
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Salary Calculator"),
       ),
@@ -51,19 +63,41 @@ class _WorkingDaysResultState extends State<WorkingDaysResult> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 30.0),
+            padding: const EdgeInsets.only(top: 20.0),
             child: Column(
               children: <Widget>[
-                Text("Net Salary   ${widget.value1}",
-                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                Text("Present Days    ${widget.value2}",
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
-                Text("Paid Leaves  ${widget.value3}",
-                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                Text("Working Days    ${widget.value4}",
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+                Container(
+                    child: SfCircularChart(
+                        palette: <Color>[Colors.amber, Colors.grey, Colors.blueAccent, Colors.green],
+                        series: <CircularSeries>[
+                          PieSeries<ChartData, String>(
+                              dataSource: chartData,
+                              xValueMapper: (ChartData data, _) => data.x,
+                              yValueMapper: (ChartData data, _) => data.y,
+                              // Map the data label text for each point from the data source
+                              dataLabelMapper: (ChartData data, _) => data.text,
+                              pointColorMapper: (ChartData data,_) => data.color,
+                              dataLabelSettings: DataLabelSettings(
+                                  isVisible: true
+                              )
+                          )
+                        ]
+                    )
+                ),
+                Text("Net Salary:   ${widget.value1}",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                Text("Present Days:    ${widget.value2}",
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold)),
+                Text("Paid Leaves:  ${widget.value3}",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                Text("Working Days:    ${widget.value4}",
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold)),
                 Text("Gross Salary:  ${widget.result}",
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black))
+                    style: TextStyle(fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        ))
               ],
             ),
           )
@@ -85,3 +119,11 @@ class _WorkingDaysResultState extends State<WorkingDaysResult> {
     );
   }
 }
+  class ChartData {
+  ChartData(this.x, this.y,this.text, [this.color]);
+  final String x;
+  final double y;
+  final String text;
+  final Color color;
+  }
+
